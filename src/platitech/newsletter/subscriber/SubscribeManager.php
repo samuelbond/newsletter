@@ -20,17 +20,14 @@ class SubscribeManager
 
 
     public function subscribe($name, $email){
-        $subscriber = new Subscribers();
-        $subscriber->setName($name);
-        $subscriber->setEmail($email);
-        $subscriber->setToken(password_hash($email, PASSWORD_DEFAULT));
-        $sql = "INSERT INTO ".Config::getTableName()." (name, email, token) values (?, ?, ?)";
+        $token = password_hash($email, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO ".Config::getTableName()." (name, email, token) values (:name, :email, :token)";
         $stmt = Config::getConn()->prepare($sql);
-        $stmt->bindParam(1, $subscriber->getName());
-        $stmt->bindParam(2, $subscriber->getEmail());
-        $stmt->bindParam(3, $subscriber->getToken());
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":token", $token);
         $stmt->execute();
-        return $subscriber;
+        return true;
     }
 
     public function unSubscribe($token){
