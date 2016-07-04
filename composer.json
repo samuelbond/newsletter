@@ -1,0 +1,26 @@
+{
+  "name": "platitech/newsletter",
+  "description": "A package for subscribing and un-subscribing to a newsletter, with additional features",
+  "authors": [
+    {
+      "name": "Samuel A",
+      "email": "samuelizuchi@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.3.4",
+    "behat/behat": "3.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "platitech\\newsletter\\": "src/platitech/newsletter/"
+    }
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
